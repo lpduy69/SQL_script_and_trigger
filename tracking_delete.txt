@@ -1,0 +1,8 @@
+DELIMITER |
+CREATE TRIGGER tracking_delete 
+AFTER DELETE ON users FOR EACH ROW
+BEGIN
+INSERT INTO history_track (action,id,timestamp,OLD_Name,OLD_Dept) VALUES('delete',OLD.id,NOW(),OLD.Name,OLD.Dept);
+END;
+|
+DELIMITER ;
