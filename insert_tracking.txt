@@ -1,5 +1,7 @@
+DELIMITER |
 CREATE TRIGGER tracking_insert 
 AFTER INSERT ON users FOR EACH ROW
 BEGIN
 INSERT INTO history_track (action,id,timestamp,Name,Dept) VALUES('insert',NEW.id,NOW(),NEW.Name,NEW.Dept);
 END;
+DELIMITER ;
