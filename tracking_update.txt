@@ -1,0 +1,8 @@
+DELIMITER |
+CREATE TRIGGER tracking_update 
+AFTER UPDATE ON users FOR EACH ROW
+BEGIN
+ INSERT INTO history_track (action,id,timestamp,OLD_Name,Name,OLD_Dept,Dept) VALUES('update',NEW.id,NOW(),OLD.Name,NEW.Name,OLD.Dept,NEW.Dept);
+END;
+|
+DELIMITER ;
